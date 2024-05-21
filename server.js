@@ -1,4 +1,5 @@
 const express = require('express');
+const fetch = require('node-fetch'); // Use node-fetch for server-side requests
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable for port
 
@@ -8,13 +9,16 @@ if (!apiKey) {
     throw new Error('Missing NASA API Key! Set the NASA_API_KEY environment variable.');
 }
 
+// Root route to handle requests to '/'
+app.get('/', (req, res) => {
+    res.send('Welcome to the NASA API application!');
+});
+
 app.get('/neo-data', async (req, res) => {
     const baseUrl = 'https://api.nasa.gov/neo/rest/v1/feed?api_key=';
     const today = new Date().toISOString().split('T')[0]; // Get today's date
 
     try {
-        // Dynamically import node-fetch
-        const fetch = (await import('node-fetch')).default;
         const response = await fetch(`${baseUrl}${apiKey}&start_date=${today}&end_date=${today}`);
         if (!response.ok) {
             throw new Error(`Error fetching NEO data: ${response.status}`);
