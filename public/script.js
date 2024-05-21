@@ -10,7 +10,7 @@ const getNeoData = async () => {
     const endDate = today; // Use today's date for NEO data
 
     try {
-        const response = await fetch(baseUrl + process.env.NASA_API_KEY + '&start_date=' + today + '&end_date=' + endDate);
+        const response = await fetch(`${baseUrl}?api_key=${process.env.NASA_API_KEY}&start_date=${today}&end_date=${endDate}`);
         if (!response.ok) {
             throw new Error(`Error fetching NEO data: ${response.status}`);
         }
@@ -78,7 +78,7 @@ toggleDataBtn.addEventListener('click', async () => {
 
 // APOD data section
 async function getApodData(date) {
-    const response = await fetch('https://api.nasa.gov/planetary/apod?api_key=' + process.env.NASA_API_KEY + '&date=' + date);
+    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.NASA_API_KEY}&date=${date}`);
     const data = await response.json();
     return data;
 }
@@ -88,10 +88,32 @@ const apodContainer = $('#apod-container'); // Use jQuery selector for the conta
 const updateApodDisplay = (data) => {
     apodContainer.empty(); // Clear content using jQuery
 
-    if (data.media_type === 'image' || data.media_type === 'video') {
-        const apodElement = data.media_type === 'image' ? document.createElement('img') : document.createElement('iframe');
+    if (data.media_type === 'image') {
+        const apodElement = document.createElement('img');
         apodElement.src = data.url;
         apodElement.alt = data.title;
-        apodElement.className = "";
+        apodElement.className = "apodImg";
+        apodContainer.append(apodElement);
+    } else if (data.media_type === 'video') {
+        const apodElement = document.createElement('iframe');
+        apodElement.src = data.url;
+        apodElement.title = data.title;
+        apodElement.className = "apodImg"; // Assuming you want to style videos similarly
+        apodContainer.append(apodElement);
+    } else {
+        // Handle other media types (optional)
+        apodContainer.text('No image or video available for this date.'); // Add placeholder text
+    }
+
+    const apodTitle = document.createElement('h3');
+    apodTitle.textContent = data.title;
+    apodContainer.append(apodTitle);
+
+    // Add explanation text or link
+    if (data.explanation) {
+        const explanation = document.createElement('p');
+        explanation.textContent = data.explanation;
+        explanation.classList.add('apod-explanation'); // Add a class for styling
+        apodContainer.append(explanation);
     }
 }
