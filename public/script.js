@@ -1,5 +1,4 @@
 // Neo data section
-import server from './server.mjs'; // Assuming server.mjs is the entry point
 const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');
@@ -11,7 +10,7 @@ const getNeoData = async () => {
     const endDate = today; // Use today's date for NEO data
 
     try {
-        const response = await fetch(`${baseUrl}${apiKey}&start_date=${today}&end_date=${endDate}`);
+        const response = await fetch(`<span class="math-inline">\{baseUrl\}</span>{process.env.NASA_API_KEY}&start_date=<span class="math-inline">\{today\}&end\_date\=</span>{endDate}`);
         if (!response.ok) {
             throw new Error(`Error fetching NEO data: ${response.status}`);
         }
@@ -79,7 +78,7 @@ toggleDataBtn.addEventListener('click', async () => {
 
 // APOD data section
 async function getApodData(date) {
-    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${date}`);
+    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=<span class="math-inline">\{process\.env\.NASA\_API\_KEY\}&date\=</span>{date}`);
     const data = await response.json();
     return data;
 }
@@ -87,51 +86,10 @@ async function getApodData(date) {
 const apodContainer = $('#apod-container'); // Use jQuery selector for the container
 
 const updateApodDisplay = (data) => {
-  apodContainer.empty(); // Clear content using jQuery
+    apodContainer.empty(); // Clear content using jQuery
 
-  if (data.media_type === 'image' || data.media_type === 'video') {
-    const apodElement = data.media_type === 'image' ? document.createElement('img') : document.createElement('iframe');
-    apodElement.src = data.url;
-    apodElement.alt = data.title;
-    apodElement.className = "apodImg"; // Add class for styling
-    apodContainer.append(apodElement);
-
-    // Create close button (hidden initially) using jQuery
-    const closeApodBtn = $('<button>').text('x').addClass('close-apod');
-    apodContainer.append(closeApodBtn);
-
-    // Show close button only when there's an APOD
-    closeApodBtn.show();
-
-    closeApodBtn.click(() => {
-      apodContainer.empty(); // Clear APOD content
-      closeApodBtn.hide(); // Hide close button on click
-    });
-  } else {
-    // Handle non-image/video data (optional)
-    apodContainer.text('No image or video available for this date.'); // Add placeholder text
-    // Hide close button if there's no APOD
-    $('#close-apod-btn').hide(); // Use jQuery selector to target existing button
-  }
-
-  const apodTitle = document.createElement('h3');
-  apodTitle.textContent = data.title;
-  apodContainer.append(apodTitle);
-
-  // Add explanation text or link
-  if (data.explanation) {
-    const explanation = document.createElement('p');
-    explanation.textContent = data.explanation;
-    explanation.classList.add('apod-explanation'); // Add a class for styling
-    apodContainer.append(explanation);
-  }
-};
-
-// Search button click event listener (ensure no typos)
-$('#search-btn').click(async () => {
-    const searchDate = $('#search-bar').val();
-    if (!searchDate) return; // Handle empty search
-
-    const apodData = await getApodData(searchDate);
-    updateApodDisplay(apodData);
-});
+    if (data.media_type === 'image' || data.media_type === 'video') {
+        const apodElement = data.media_type === 'image' ? document.createElement('img') : document.createElement('iframe');
+        apodElement.src = data.url;
+        apodElement.alt = data.title;
+        apodElement.className = "
