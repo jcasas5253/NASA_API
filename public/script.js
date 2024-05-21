@@ -92,4 +92,6 @@ const updateApodDisplay = (data) => {
         const apodElement = data.media_type === 'image' ? document.createElement('img') : document.createElement('iframe');
         apodElement.src = data.url;
         apodElement.alt = data.title;
-        apodElement.className = "
+        apodElement.className = ""
+    }
+}
