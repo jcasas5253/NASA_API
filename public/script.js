@@ -31,3 +31,4 @@ const getApodData = async (date) => {
   } catch (error) {
     console.error('Error fetching APOD data:', error);
     // Handle errors (e.g., display error message to user
+  }
