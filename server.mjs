@@ -1,5 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch'; // Use node-fetch for server-side requests
+import path from 'path';
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable for port
@@ -10,12 +11,16 @@ if (!apiKey) {
     throw new Error('Missing NASA API Key! Set the NASA_API_KEY environment variable.');
 }
 
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Serve static files from the "public" directory
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 // Route to serve index.html with NASA_API_KEY embedded
 app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: 'public', NASA_API_KEY: apiKey });
+    res.render('index', { NASA_API_KEY: apiKey });
 });
 
 app.get('/neo-data', async (req, res) => {
