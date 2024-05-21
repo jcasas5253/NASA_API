@@ -1,5 +1,6 @@
-const express = require('express');
-const fetch = require('node-fetch'); // Use node-fetch for server-side requests
+import express from 'express';
+import fetch from 'node-fetch'; // Use node-fetch for server-side requests
+
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable for port
 
