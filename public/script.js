@@ -1,5 +1,5 @@
 // Neo data section
-const server = require('./server.js');
+const server = require('./server.mjs');
 const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');
