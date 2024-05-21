@@ -10,7 +10,7 @@ const getNeoData = async () => {
     const endDate = today; // Use today's date for NEO data
 
     try {
-        const response = await fetch(`<span class="math-inline">\{baseUrl\}</span>{process.env.NASA_API_KEY}&start_date=<span class="math-inline">\{today\}&end\_date\=</span>{endDate}`);
+        const response = await fetch(baseUrl + process.env.NASA_API_KEY + '&start_date=' + today + '&end_date=' + endDate);
         if (!response.ok) {
             throw new Error(`Error fetching NEO data: ${response.status}`);
         }
@@ -78,7 +78,7 @@ toggleDataBtn.addEventListener('click', async () => {
 
 // APOD data section
 async function getApodData(date) {
-    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=<span class="math-inline">\{process\.env\.NASA\_API\_KEY\}&date\=</span>{date}`);
+    const response = await fetch('https://api.nasa.gov/planetary/apod?api_key=' + process.env.NASA_API_KEY + '&date=' + date);
     const data = await response.json();
     return data;
 }
@@ -92,6 +92,6 @@ const updateApodDisplay = (data) => {
         const apodElement = data.media_type === 'image' ? document.createElement('img') : document.createElement('iframe');
         apodElement.src = data.url;
         apodElement.alt = data.title;
-        apodElement.className = ""
+        apodElement.className = "";
     }
 }
