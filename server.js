@@ -1,7 +1,6 @@
 const express = require('express');
-const fetch = require('node-fetch'); // Use node-fetch for server-side requests
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable for port (optional)
+const port = process.env.PORT || 3000; // Use environment variable for port
 
 const apiKey = process.env.NASA_API_KEY;
 
@@ -14,6 +13,8 @@ app.get('/neo-data', async (req, res) => {
     const today = new Date().toISOString().split('T')[0]; // Get today's date
 
     try {
+        // Dynamically import node-fetch
+        const fetch = (await import('node-fetch')).default;
         const response = await fetch(`${baseUrl}${apiKey}&start_date=${today}&end_date=${today}`);
         if (!response.ok) {
             throw new Error(`Error fetching NEO data: ${response.status}`);
