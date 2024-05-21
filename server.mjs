@@ -1,5 +1,3 @@
-// server.mjs
-
 import express from 'express';
 import fetch from 'node-fetch'; // Use node-fetch for server-side requests
 
@@ -12,9 +10,12 @@ if (!apiKey) {
     throw new Error('Missing NASA API Key! Set the NASA_API_KEY environment variable.');
 }
 
+// Serve static files from the "public" directory
+app.use(express.static('public'));
+
 // Root route to handle requests to '/'
 app.get('/', (req, res) => {
-    res.send('Welcome to the NASA API application!');
+    res.sendFile('index.html', { root: 'public' });
 });
 
 app.get('/neo-data', async (req, res) => {
