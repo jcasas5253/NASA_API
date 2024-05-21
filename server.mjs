@@ -13,9 +13,9 @@ if (!apiKey) {
 // Serve static files from the "public" directory
 app.use(express.static('public'));
 
-// Root route to handle requests to '/'
+// Route to serve index.html with NASA_API_KEY embedded
 app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: 'public' });
+    res.sendFile('index.html', { root: 'public', NASA_API_KEY: apiKey });
 });
 
 app.get('/neo-data', async (req, res) => {
