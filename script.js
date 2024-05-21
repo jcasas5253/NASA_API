@@ -1,5 +1,3 @@
-const apiKey = process.env.NASA_API_KEY; // Replace with your actual NASA API key
-
 // Neo data section
 const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
@@ -8,7 +6,7 @@ const neoTable = document.getElementById('neo-table');
 const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
 const getNeoData = async () => {
-    const baseUrl = 'https://api.nasa.gov/neo/rest/v1/feed?api_key='; // NASA NEO API base URL
+    const baseUrl = '/neo-data'; // NASA NEO API base URL
     const endDate = today; // Use today's date for NEO data
 
     try {
