@@ -68,42 +68,47 @@ const getSpaceNews = async () => {
     }
     const data = await response.json();
 
-    // Process space news data and create HTML elements here
-    spaceNewsContainer.innerHTML = ''; // Clear existing content
+    // Check if data.articles exists before iterating
+    if (data.articles) {
+      // Process space news data and create HTML elements here
+      spaceNewsContainer.innerHTML = ''; // Clear existing content
+      data.articles.forEach(article => {
+        const articleContainer = document.createElement('div');
+        articleContainer.classList.add('article'); // Add CSS class for styling
 
-    // Code to process and display space news articles (similar to previous example)
-    data.articles.forEach(article => {
-      const articleContainer = document.createElement('div');
-      articleContainer.classList.add('article'); // Add CSS class for styling
+        // Create elements for title, description, image (if available), and link
+        const titleElement = document.createElement('h3');
+        titleElement.textContent = article.title;
+        const descriptionElement = document.createElement('p');
+        descriptionElement.textContent = article.summary;
+        const imageElement = article.imageUrl ? document.createElement('img') : null;
+        if (imageElement) {
+          imageElement.src = article.imageUrl;
+          imageElement.alt = article.title;
+        }
+        const linkElement = document.createElement('a');
+        linkElement.href = article.url;
+        linkElement.textContent = 'Read More';
 
-      // Create elements for title, description, image (if available), and link
-      const titleElement = document.createElement('h3');
-      titleElement.textContent = article.title;
-      const descriptionElement = document.createElement('p');
-      descriptionElement.textContent = article.summary;
-      const imageElement = article.imageUrl ? document.createElement('img') : null;
-      if (imageElement) {
-        imageElement.src = article.imageUrl;
-        imageElement.alt = article.title;
-      }
-      const linkElement = document.createElement('a');
-      linkElement.href = article.url;
-      linkElement.textContent = 'Read More';
+        // Add elements to the article container and append it to the spaceNewsContainer
+        articleContainer.appendChild(titleElement);
+        articleContainer.appendChild(descriptionElement);
+        if (imageElement) {
+          articleContainer.appendChild(imageElement);
+        }
+        articleContainer.appendChild(linkElement);
 
-      // Add elements to the article container and append it to the spaceNewsContainer
-      articleContainer.appendChild(titleElement);
-      articleContainer.appendChild(descriptionElement);
-      if (imageElement) {
-        articleContainer.appendChild(imageElement);
-      }
-      articleContainer.appendChild(linkElement);
-
-      spaceNewsContainer.appendChild(articleContainer);
-    });
+        spaceNewsContainer.appendChild(articleContainer);
+      });
+    } else {
+      // Handle case where data.articles is missing
+      console.warn("No space news articles found in the response.");
+      spaceNewsContainer.innerHTML = 'No space news available at this time.';
+    }
 
   } catch (error) {
     console.error('Error fetching space news:', error);
-    // Handle
+    spaceNewsContainer.innerHTML = 'An error occurred while fetching space news. Please try again later.';
   }
 }
 
