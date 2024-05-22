@@ -117,8 +117,13 @@ const toggleDataBtn = document.getElementById('toggleDataBtn');
 const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
 
 toggleDataBtn.addEventListener('click', async () => {
-    // Call the function to toggle data when the toggleDataBtn is clicked
-    await processNeoData();
+    try {
+        // Call the function to fetch NEO data
+        await getNeoData();
+    } catch (error) {
+        console.error('Error toggling NEO data:', error);
+        // Handle errors (e.g., display error message to user)
+    }
 });
 
 getSpaceNewsBtn.addEventListener('click', async () => {
