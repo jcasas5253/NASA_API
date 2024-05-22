@@ -354,7 +354,8 @@ th {
 @media screen and (max-width: 767px) {
   #description,
   #asteroids,
-  #space-news {
+  #space-news,
+  #asteroid-table {
     width: 100% !important;
   }
 }
