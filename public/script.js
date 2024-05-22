@@ -150,12 +150,12 @@ getSpaceNewsBtn.addEventListener('click', async () => {
 
 function scrollToDescription() {
     const descriptionElement = document.getElementById("description");
-    const desiredOffset = 200; // Adjust offset for desired space
+    const desiredOffset = 100; // Adjust offset for desired space
 
     // Calculate the target position considering the offset
     const targetY = descriptionElement.getBoundingClientRect().top + window.scrollY - desiredOffset;
 
-    smoothScrollTo(targetY, 600); // Adjust duration for desired scroll speed
+    smoothScrollTo(targetY, 800); // Adjust duration for desired scroll speed
 }
 
 function smoothScrollTo(targetY, duration) {
@@ -171,16 +171,16 @@ function smoothScrollTo(targetY, duration) {
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1); // Ensure progress does not exceed 1
 
-        window.scrollTo(0, startY + distance * easeInOutQuad(progress));
+        window.scrollTo(0, startY + distance * easeInOutCubic(progress));
 
         if (progress < 1) {
             requestAnimationFrame(step);
         }
     }
 
-    // Easing function for a smooth scroll effect
-    function easeInOutQuad(t) {
-        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    // Easing function for a smoother scroll effect
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
 
     requestAnimationFrame(step);
