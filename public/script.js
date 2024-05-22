@@ -89,21 +89,16 @@ const searchBtn = document.getElementById('search-btn');
 const searchInput = document.getElementById('search-bar');
 const apodContainer = document.getElementById('apod-container');
 
-const getApodData = async (date) => {
+const getEarthData = async (date) => {
   try {
-    // Fetch API key first
-    const apiKeyResponse = await fetch('/get-api-key');
-    if (!apiKeyResponse.ok) {
-      throw new Error('Error fetching API key');
+    const response = await fetch(`/get-earth-data?date=${date}`); // Fetch from server-side endpoint
+    if (!response.ok) {
+      throw new Error('Error fetching Earth data');
     }
-    const apiKeyData = await apiKeyResponse.json();
-    const apiKey = apiKeyData.apiKey; // Extract the API key
-
-    // Use the fetched API key for APOD data request
-    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=<span class="math-inline">\{apiKey\}&date\=</span>{date}`);
-    // ... rest of the getApodData function logic ...
+    const data = await response.json();
+    updateEarthDisplay(data);
   } catch (error) {
-    console.error('Error fetching APOD data:', error);
+    console.error('Error fetching Earth data:', error);
     // Handle errors (e.g., display error message to user)
   }
 };
