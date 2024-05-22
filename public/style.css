@@ -177,3 +177,10 @@ th {
     height: 65px;
     text-align: center;
 }
+
+@media screen and (max-width: 767px) {
+  #description,
+  #asteroids {
+    width: 100% !important;
+  }
+}
