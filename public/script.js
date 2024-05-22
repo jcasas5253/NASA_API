@@ -1,6 +1,7 @@
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');
 const spaceNewsContainer = document.getElementById('space-news-container');
+const today = new Date().toISOString().split('T')[0];
 
 const getNeoData = async () => {
   try {
