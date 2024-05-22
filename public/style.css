@@ -77,6 +77,20 @@ h3 {
     }
 }
 
+@keyframes sideToSide {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(10px); /* Adjust the value for desired movement */
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .jumping-btn {
     /* Existing styles for the button */
     animation: jump 1s infinite alternate;
@@ -190,27 +204,18 @@ th {
 .btn-primary {
     background-color: #0b3d91;
     color: #fff; /* White text for contrast */
-    border: none; /* Remove default border */
+    border: 5px solid #0b3d91;
+    box-shadow: 0px 0px 15px 2px rgba(11, 61, 145, 0.7) !important;
     font-weight: bold; /* Bold text for emphasis */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
     margin-bottom: 20px;
 }
 
 #toggleDataBtn:hover {
-    background-color: #fc3d21 !important; 
+    animation: sideToSide 1s infinite alternate; 
 }
 
 #getSpaceNewsBtn:hover {
-    background-color: #fc3d21 !important; 
-}
-
-#search-btn:hover {
-    background-color: #fc3d21;
-    border-color: #fc3d21;
-}
-
-#search-bar {
-    width: auto;
+    animation: sideToSide 1s infinite alternate; 
 }
 
 #description  {
@@ -232,19 +237,23 @@ th {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.footer {
-    display: flex; /* Make footer a flex container */
-    align-items: center; /* Vertically center content */
-    justify-content: center;
-    flex: 0 0 auto; /* Footer shrinks to fit content */
-    border: 5px solid white;
-    box-shadow: 0px 0px 5px #fff !important;
-    padding-top: 30px;
-    padding-bottom: 15px;
-    background-color: rgba(255, 255, 255, 0.5);
-    height: 65px;
-    text-align: center;
+#scroll-btn:hover {
+    background-color: #0b3d91;
 }
+
+    .footer {
+        display: flex; /* Make footer a flex container */
+        align-items: center; /* Vertically center content */
+        justify-content: center;
+        flex: 0 0 auto; /* Footer shrinks to fit content */
+        border: 5px solid white;
+        box-shadow: 0px 0px 5px #fff !important;
+        padding-top: 30px;
+        padding-bottom: 15px;
+        background-color: rgba(255, 255, 255, 0.5);
+        height: 65px;
+        text-align: center;
+    }
 
 @media screen and (max-width: 1152px) {
     #scroll-btn {
