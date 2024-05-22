@@ -4,6 +4,37 @@ const neoTable = document.getElementById('neo-table');
 const spaceNewsContainer = document.getElementById('space-news-container'); 
 const today = new Date().toISOString().split('T')[0];
 
+const themeBtn = document.getElementById('theme-btn');
+
+let wiggleInterval;
+
+function startWiggle() {
+    wiggleInterval = setInterval(() => {
+        themeBtn.classList.toggle('wiggle');
+    }, 5000); // Wiggle every 5 seconds
+}
+
+startWiggle(); // Start the wiggle effect
+
+themeBtn.addEventListener('click', () => {
+    clearInterval(wiggleInterval); // Stop the wiggle effect when the button is clicked
+});
+
+
+document.getElementById('theme-btn').addEventListener('click', () => {
+    const body = document.body;
+    const button = document.getElementById('theme-btn');
+    if (body.style.backgroundColor === 'rgb(40, 1, 55)' || body.style.backgroundColor === '#280137') {
+        body.style.backgroundColor = 'black';
+        button.style.backgroundColor = '#280137'; // Button color when body is black
+        button.style.borderColor = '#280137'; // Border color when button is black
+    } else {
+        body.style.backgroundColor = '#280137';
+        button.style.backgroundColor = 'black'; // Button color when body is #280137
+        button.style.borderColor = 'black'; // Border color when button is #280137
+    }
+});
+
 const getNeoData = async () => {
   try {
     const response = await fetch('/neo-data');
