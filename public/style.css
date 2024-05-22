@@ -163,15 +163,15 @@ th {
 }
 
 #toggleDataBtn:hover {
-    background-color: #fc3d21; 
+    background-color: #fc3d21 !important; 
 }
 
 ##getSpaceNewsBtn:hover {
-    background-color: #fc3d21; 
+    background-color: #fc3d21 !important; 
 }
 
 .btn-primary:hover {
-    background-color: #fc3d21; 
+    background-color: #fc3d21 !important; 
 }
 
 #search-btn:hover {
