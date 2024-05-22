@@ -149,13 +149,13 @@ getSpaceNewsBtn.addEventListener('click', async () => {
 });
 
 function scrollToDescription() {
-  const descriptionElement = document.getElementById("description");
-  const desiredOffset = 200; // Adjust offset for desired space
+    const descriptionElement = document.getElementById("description");
+    const desiredOffset = 200; // Adjust offset for desired space
 
-  // Calculate the target position considering the offset
-  const targetY = descriptionElement.getBoundingClientRect().top + window.scrollY - desiredOffset;
+    // Calculate the target position considering the offset
+    const targetY = descriptionElement.getBoundingClientRect().top + window.scrollY - desiredOffset;
 
-  smoothScrollTo(targetY, 1000); // Adjust duration for desired scroll speed
+    smoothScrollTo(targetY, 1000); // Adjust duration for desired scroll speed
 }
 
 function smoothScrollTo(targetY, duration) {
@@ -177,5 +177,13 @@ function smoothScrollTo(targetY, duration) {
             requestAnimationFrame(step);
         }
     }
+
+    // Easing function for a smooth scroll effect
+    function easeInOutQuad(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    requestAnimationFrame(step);
 }
+
 
