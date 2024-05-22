@@ -15,14 +15,6 @@ if (!apiKey) {
 // Serve static files from the "public" directory
 app.use(express.static('public'));
 
-app.get('/get-api-key', (req, res) => {
-  if (apiKey) {
-    res.json({ apiKey }); // Respond with the API key in JSON
-  } else {
-    res.status(500).send('Internal Server Error'); // Handle missing key
-  }
-});
-
 // Set up a route to fetch NEO data
 app.get('/neo-data', async (req, res) => {
   const baseUrl = 'https://api.nasa.gov/neo/rest/v1/feed?api_key=';
@@ -37,6 +29,29 @@ app.get('/neo-data', async (req, res) => {
     res.json(data);
   } catch (error) {
     console.error('Error fetching NEO data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// ... other server-side code
+
+app.get('/get-earth-data', async (req, res) => {
+  const apiKey = process.env.NASA_API_KEY; // Access your securely stored key
+  const date = req.query.date; // Get the date parameter from the request
+
+  if (!apiKey || !date) {
+    return res.status(400).send('Missing API key or date parameter');
+  }
+
+  try {
+    const response = await fetch(`https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${apiKey}`);
+    if (!response.ok) {
+      throw new Error(`Error fetching Earth data: ${response.status}`);
+    }
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching Earth data:', error);
     res.status(500).send('Internal Server Error');
   }
 });
