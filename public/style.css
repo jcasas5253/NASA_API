@@ -13,7 +13,7 @@ h1 {
 }
 
 h3 {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .main-wrapper {
@@ -152,7 +152,8 @@ th {
 
 /* Button Styles */
 #toggleDataBtn,
-#getSpaceNewsBtn{
+#getSpaceNewsBtn,
+.btn-primary {
     background-color: #0b3d91;
     color: #fff; /* White text for contrast */
     border: none; /* Remove default border */
@@ -162,7 +163,15 @@ th {
 }
 
 #toggleDataBtn:hover {
-    background-color: #fc3d21; /* Darker blue on hover */
+    background-color: #fc3d21; 
+}
+
+##getSpaceNewsBtn:hover {
+    background-color: #fc3d21; 
+}
+
+.btn-primary:hover {
+    background-color: #fc3d21; 
 }
 
 #search-btn:hover {
