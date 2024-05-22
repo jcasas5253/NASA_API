@@ -149,11 +149,32 @@ getSpaceNewsBtn.addEventListener('click', async () => {
 });
 
 function scrollToDescription() {
-    const descriptionElement = document.getElementById("description");
-    const desiredOffset = 100; // Adjust offset for desired space
+  const descriptionElement = document.getElementById("description");
+  const desiredOffset = 200; // Adjust offset for desired space
 
-    // Calculate the target position considering the offset
-    const targetY = descriptionElement.getBoundingClientRect().top + window.scrollY - desiredOffset;
+  // Calculate the target position considering the offset
+  const targetY = descriptionElement.getBoundingClientRect().top + window.scrollY - desiredOffset;
 
-    smoothScrollTo(targetY, 1000); // Adjust duration for desired scroll speed
+  smoothScrollTo(targetY, 1000); // Adjust duration for desired scroll speed
 }
+
+function smoothScrollTo(targetY, duration) {
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  let startTime = null;
+
+  function step(currentTime) {
+    if (!startTime) {
+      startTime = currentTime;
+    }
+
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1); // Ensure progress does not exceed 1
+
+    window.scrollTo(0, startY + distance);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
