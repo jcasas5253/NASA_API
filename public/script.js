@@ -120,6 +120,7 @@ toggleDataBtn.addEventListener('click', async () => {
 
 const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
 const newsCard = document.getElementById('news-card');
+const closeNewsBtn = document.getElementById('closeNewsBtn'); // Add close button
 getSpaceNewsBtn.addEventListener('click', async () => {
     // Call the function to fetch space news when the getSpaceNewsBtn is clicked
     await getSpaceNews();
@@ -130,6 +131,17 @@ getSpaceNewsBtn.addEventListener('click', async () => {
     } else {
         newsCard.style.height = '300px';
     }
+
+    // Show the close button when fetching news
+    closeNewsBtn.style.display = 'block';
+});
+
+closeNewsBtn.addEventListener('click', () => {
+    // Remove articles and hide the news card
+    spaceNewsContainer.innerHTML = '';
+    newsCard.style.height = '300px'; // Set the height back to 300px
+    // Show the Fetch News button again
+    getSpaceNewsBtn.style.display = 'block';
 });
 
 const getSpaceNews = async () => {
@@ -172,14 +184,14 @@ const getSpaceNews = async () => {
             });
 
             // Hide button
-            getSpaceNewsBtn.style.display = 'display';
+            getSpaceNewsBtn.style.display = 'none';
 
         } else {
             // Handle case where data.results is missing or empty
             console.warn("No space news articles found in the response.");
             spaceNewsContainer.innerHTML = 'No space news available at this time.';
             // Show the original "Get Space News" button
-            getSpaceNewsBtn.style.display = 'none';
+            getSpaceNewsBtn.style.display = 'block';
         }
 
     } catch (error) {
@@ -188,13 +200,7 @@ const getSpaceNews = async () => {
         // Show the original "Get Space News" button
         getSpaceNewsBtn.style.display = 'block';
     }
-}
-
-
-getSpaceNewsBtn.addEventListener('click', async () => {
-    // Call the function to fetch space news when the getSpaceNewsBtn is clicked
-    await getSpaceNews();
-});
+};
 
 function scrollToDescription() {
     const descriptionElement = document.getElementById("description");
