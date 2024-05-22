@@ -15,6 +15,14 @@ if (!apiKey) {
 // Serve static files from the "public" directory
 app.use(express.static('public'));
 
+app.get('/get-api-key', (req, res) => {
+  if (apiKey) {
+    res.json({ apiKey }); // Respond with the API key in JSON
+  } else {
+    res.status(500).send('Internal Server Error'); // Handle missing key
+  }
+});
+
 // Set up a route to fetch NEO data
 app.get('/neo-data', async (req, res) => {
   const baseUrl = 'https://api.nasa.gov/neo/rest/v1/feed?api_key=';
