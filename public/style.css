@@ -191,10 +191,11 @@ main {
     border: none;
     color: white;
     font-size: 24px;
-    position: absolute;
-    top: 10px;
+    position: relative;
+    top: -60px;
     right: 10px;
     cursor: pointer;
+    float: right;
 }
 
     .close-news-btn:hover {
