@@ -260,9 +260,7 @@ th {
 }
 
 #getSpaceNewsBtn {
-    position: absolute;
-    top: 50%;
-    left: 40%;
+    margin-top: 8%;
 }
 
 #toggleDataBtn:hover {
@@ -323,10 +321,6 @@ th {
      position: absolute;
      left: 47%;
     }
-    #getSpaceNewsBtn {
-        position: absolute;
-        left: 37%;
-    }
 }
 
 @media screen and (max-width: 965px) {
@@ -334,20 +328,12 @@ th {
         position: absolute;
         left: 46%;
     }
-    #getSpaceNewsBtn {
-        position: absolute;
-        left: 33%;
-    }
 }
 
 @media screen and (max-width: 685px) {
     #scroll-btn {
         position: absolute;
         left: 45%;
-    }
-    #getSpaceNewsBtn {
-        position: absolute;
-        left: 36%;
     }
     #theme-btn {
         width: 55px;
@@ -363,10 +349,6 @@ th {
         left: 43%;
         top: 70%;
     }
-    #getSpaceNewsBtn {
-        position: absolute;
-        left: 34%;
-    }
 }
 
 @media screen and (max-width: 499px) {
@@ -374,10 +356,6 @@ th {
         position: absolute;
         left: 42%;
         top: 70%;
-    }
-    #getSpaceNewsBtn {
-        position: absolute;
-        left: 33%;
     }
 }
 
@@ -387,10 +365,6 @@ th {
         left: 41%;
         top: 70%;
     }
-    #getSpaceNewsBtn {
-        position: absolute;
-        left: 25%;
-    }
 }
 
 @media screen and (max-width: 310px) {
@@ -398,10 +372,6 @@ th {
         position: absolute;
         left: 38%;
         top: 70%;
-    }
-    #getSpaceNewsBtn {
-        position: absolute;
-        left: 16%;
     }
 }
 
