@@ -118,18 +118,6 @@ toggleDataBtn.addEventListener('click', async () => {
   isButtonClicked = !isButtonClicked;
 });
 
-getSpaceNewsBtn.addEventListener('click', async () => {
-    // Call the function to fetch space news when the getSpaceNewsBtn is clicked
-    await getSpaceNews();
-
-    // Toggle the height of the card to 'auto' after fetching space news
-    if (newsCard.style.height === '300px') {
-        newsCard.style.height = 'auto';
-    } else {
-        newsCard.style.height = '300px';
-    }
-});
-
 const getSpaceNews = async () => {
   try {
     const response = await fetch('/space-news');
@@ -169,7 +157,19 @@ const getSpaceNews = async () => {
         spaceNewsContainer.appendChild(articleContainer);
 
         //hide button
-        getSpaceNewsBtn.style.display = 'none';
+          getSpaceNewsBtn.style.display = 'none';
+
+          getSpaceNewsBtn.addEventListener('click', async () => {
+              // Call the function to fetch space news when the getSpaceNewsBtn is clicked
+              await getSpaceNews();
+
+              // Toggle the height of the card to 'auto' after fetching space news
+              if (newsCard.style.height === '300px') {
+                  newsCard.style.height = 'auto';
+              } else {
+                  newsCard.style.height = '300px';
+              }
+          });
         
       });
     } else {
