@@ -172,14 +172,14 @@ const getSpaceNews = async () => {
             });
 
             // Hide button
-            getSpaceNewsBtn.style.display = 'none';
+            getSpaceNewsBtn.style.display = 'display';
 
         } else {
             // Handle case where data.results is missing or empty
             console.warn("No space news articles found in the response.");
             spaceNewsContainer.innerHTML = 'No space news available at this time.';
             // Show the original "Get Space News" button
-            getSpaceNewsBtn.style.display = 'block';
+            getSpaceNewsBtn.style.display = 'none';
         }
 
     } catch (error) {
