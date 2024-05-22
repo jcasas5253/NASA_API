@@ -81,17 +81,11 @@ const getSpaceNews = async () => {
         const articleContainer = document.createElement('div');
         articleContainer.classList.add('article'); // Add CSS class for styling
 
-        // Create elements for title, description, image (if available), and link
+        // Create elements for title, description, and link
         const titleElement = document.createElement('h3');
         titleElement.textContent = article.title;
         const descriptionElement = document.createElement('p');
         descriptionElement.textContent = article.summary;
-        const imageElement = article.image_url ? document.createElement('img') : null;
-        if (imageElement) {
-          imageElement.src = article.image_url;
-          imageElement.alt = article.title;
-          imageElement.style.width = '100%'; // Set image width to 100%
-        }
         const linkElement = document.createElement('a');
         linkElement.href = article.url;
         linkElement.className = 'btn btn-primary mt-3'; // Add button classes
@@ -99,9 +93,6 @@ const getSpaceNews = async () => {
 
         // Add elements to the article container and append it to the spaceNewsContainer
         articleContainer.appendChild(titleElement);
-        if (imageElement) {
-          articleContainer.appendChild(imageElement);
-        }
         articleContainer.appendChild(descriptionElement);
         articleContainer.appendChild(linkElement);
 
