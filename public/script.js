@@ -217,4 +217,15 @@ function smoothScrollTo(targetY, duration) {
     requestAnimationFrame(step);
 }
 
+const newsCard = document.getElementById('news-card');
+
+getSpaceNewsBtn.addEventListener('click', () => {
+    // Toggle the height of the card to 'auto'
+    if (newsCard.style.height === '300px') {
+        newsCard.style.height = 'auto';
+    } else {
+        newsCard.style.height = '300px';
+    }
+});
+
 

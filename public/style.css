@@ -287,6 +287,10 @@ th {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
+#space-news-container {
+    text-align: center;
+}
+
 #scroll-btn:hover {
     background-color: #0b3d91;
 }
