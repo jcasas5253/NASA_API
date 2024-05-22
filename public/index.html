@@ -31,28 +31,25 @@
     </div>
 
     <div class="main-wrapper">
-        <header class="container">
+        <div class="container">
             <div class="row title-row" style="margin-top:80px;">
-                <div class="col-md-12 d-flex flex-column align-items-center stylish mx-auto" id="description" style="width: 80%">
+                <div class="col-md-12 d-flex flex-column align-items-center stylish mx-auto" id="description" style="width: 60%">
                     <h1 style="padding:20px;">SpaceSeeker </h1>
                     <p style="padding:20px; font-size: 1em;">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </p>
                 </div>
             </div>
-        </header>
+        </div>
 
 
         <div class="container">
             <div class="row">
                 <div class="col-sm">
-                    <div class="col-md-4" style="margin-bottom: 100px; width:100%; height: 300px;">
-                        <div class="card stylish" style="height: 300px; border-radius: 0; overflow-y: scroll;">
+                    <div class="col-md-12" id="space-news" style="margin-bottom: 100px;width: 60%;margin-left: auto;margin-right: auto;">
+                        <div class="card stylish" id="news-card" style="height: 500px; border-radius: 0; overflow-y: scroll;">
                             <div class="card-header">
                                 <h1>Latest Space News</h1>
                             </div>
@@ -63,55 +60,50 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
                 <div class="col-sm">
-                    <div class="col-md-4 d-flex flex-column align-items-center stylish mx-auto" id="asteroids" style="width: 100%; height: 300px;">
+                    <div class="col-md-12 d-flex flex-column align-items-center stylish mx-auto" id="asteroids" style="width: 60%; height: 300px;">
                         <h1 style="padding:20px;">Asteroids Nearing Earth Today!</h1>
                         <p>Data provided by NASA</p>
                         <button id="toggleDataBtn" class="btn btn-primary mt-3">View</button>
                     </div>
-                    <div class="col-md-4">
-                    </div>
-                </div>               
-            </div>
-            </div>
-        </div>
-
-    <div class="container">
-  <div class="row">
-    <div class="col-sm">
-
-    </div>
-    <div class="col-sm">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="neo-container" class="collapse">
-                    <main class="container asteroid-table">
-                        <table id="neo-table" class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Closest Approach Date</th>
-                                    <th>Is Potentially Hazardous</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </main>
                 </div>
             </div>
         </div>
     </div>
-  </div>
-</div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; Jacob Casas. All rights reserved.</p>
-        </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+                        <div class="row">
+                            <div class="col-md-12" style="width: 80%;">
+                                <div id="neo-container" class="collapse">
+                                    <main class="container asteroid-table">
+                                        <table id="neo-table" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Closest Approach Date</th>
+                                                    <th>Is Potentially Hazardous</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </main>
+                                </div>
+                            </div>
+                        </div>
+
+            <footer class="footer">
+                <div class="container">
+                    <p>&copy; Jacob Casas. All rights reserved.</p>
+                </div>
+            </footer>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+            <script src="script.js"></script>
 </body>
 </html>
