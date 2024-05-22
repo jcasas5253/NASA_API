@@ -84,7 +84,7 @@ toggleDataBtn.addEventListener('click', async () => {
     isButtonClicked = !isButtonClicked;
 });
 
-// Astronomy Picture of the Day section
+// Earch Picture of the Day
 const searchBtn = document.getElementById('search-btn');
 const searchInput = document.getElementById('search-bar');
 const apodContainer = document.getElementById('apod-container');
