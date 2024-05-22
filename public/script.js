@@ -159,6 +159,7 @@ const getSpaceNews = async () => {
         //hide button
           getSpaceNewsBtn.style.display = 'none';
 
+          const newsCard = document.getElementById('news-card');
           getSpaceNewsBtn.addEventListener('click', async () => {
               // Call the function to fetch space news when the getSpaceNewsBtn is clicked
               await getSpaceNews();
@@ -228,5 +229,3 @@ function smoothScrollTo(targetY, duration) {
 
     requestAnimationFrame(step);
 }
-
-const newsCard = document.getElementById('news-card');
