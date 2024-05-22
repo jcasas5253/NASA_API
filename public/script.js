@@ -150,7 +150,7 @@ getSpaceNewsBtn.addEventListener('click', async () => {
 
 function scrollToDescription() {
     const descriptionElement = document.getElementById("description");
-    const desiredOffset = 200; // Adjust offset for desired space
+    const desiredOffset = 100; // Adjust offset for desired space
 
     // Calculate the target position considering the offset
     const targetY = descriptionElement.getBoundingClientRect().top + window.scrollY - desiredOffset;
