@@ -113,34 +113,28 @@ searchBtn.addEventListener('click', async () => {
     }
 });
 
-const updateApodDisplay = (data) => {
-    apodContainer.innerHTML = ''; // Clear previous content
-    // Process and display APOD data here
-    // For example:
-    const apodTitle = document.createElement('h3');
-    apodTitle.textContent = data.title;
-    apodContainer.appendChild(apodTitle);
+const updateEarthDisplay = (data) => {
+  const earthContainer = document.getElementById('earth-container'); // Assuming an element for Earth data
+  earthContainer.innerHTML = ''; // Clear previous content
 
-    if (data.media_type === 'image') {
-        const apodElement = document.createElement('img');
-        apodElement.src = data.url;
-        apodElement.alt = data.title;
-        apodContainer.appendChild(apodElement);
-    } else if (data.media_type === 'video') {
-        const apodElement = document.createElement('iframe');
-        apodElement.src = data.url;
-        apodElement.title = data.title;
-        apodContainer.appendChild(apodElement);
-    } else {
-        // Handle other media types (optional)
-        const explanation = document.createElement('p');
-        explanation.textContent = 'No image or video available for this date.';
-        apodContainer.appendChild(explanation);
-    }
+  if (data.url) {
+    const earthImage = document.createElement('img');
+    earthImage.src = data.url;
+    earthImage.alt = 'Earth image';
+    earthContainer.appendChild(earthImage);
+  } else {
+    const message = document.createElement('p');
+    message.textContent = 'No Earth image data available.';
+    earthContainer.appendChild(message);
+  }
 
-    if (data.explanation) {
-        const explanation = document.createElement('p');
-        explanation.textContent = data.explanation;
-        apodContainer.appendChild(explanation);
-    }
+  if (data.date) {
+    const dateElement = document.createElement('p');
+    dateElement.textContent = `Date: ${data.date}`;
+    earthContainer.appendChild(dateElement);
+  }
+
+  // Add additional logic to display other relevant Earth data (optional)
+  // For example, caption, explanation, etc. based on the data structure
 };
+
