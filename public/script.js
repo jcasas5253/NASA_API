@@ -84,14 +84,15 @@ toggleDataBtn.addEventListener('click', async () => {
     isButtonClicked = !isButtonClicked;
 });
 
-// Earch Picture of the Day
-const searchBtn = document.getElementById('search-btn');
-const searchInput = document.getElementById('search-bar');
-const apodContainer = document.getElementById('apod-container');
+// Earth Picture of the Day
+window.onload = async () => {
+  // Fetch and display Earth data on page load
+  await getEarthData();
+};
 
-const getEarthData = async (date) => {
+const getEarthData = async () => {
   try {
-    const response = await fetch(`/get-earth-data?date=${date}`); // Fetch from server-side endpoint
+    const response = await fetch('/get-earth-data'); // Fetch newest data
     if (!response.ok) {
       throw new Error('Error fetching Earth data');
     }
@@ -102,16 +103,6 @@ const getEarthData = async (date) => {
     // Handle errors (e.g., display error message to user)
   }
 };
-
-searchBtn.addEventListener('click', async () => {
-  const selectedDate = searchInput.value;
-  if (selectedDate) {
-    await getEarthData(selectedDate); // Call getEarthData with the date
-  } else {
-    // Handle empty date input (e.g., display error message to user)
-    console.error('Please select a date.');
-  }
-});
 
 const updateEarthDisplay = (data) => {
   const earthContainer = document.getElementById('earth-container'); // Assuming an element for Earth data
@@ -124,7 +115,11 @@ const updateEarthDisplay = (data) => {
     earthContainer.appendChild(earthImage);
   } else {
     const message = document.createElement('p');
-    message.textContent = 'No Earth image data available.';
+    if (data.noDataForRequestedDate) {
+      message.textContent = 'No Earth image data available for today. Displaying the newest image.';
+    } else {
+      message.textContent = 'No Earth image data available.';
+    }
     earthContainer.appendChild(message);
   }
 
