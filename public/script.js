@@ -118,7 +118,7 @@ const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
 
 toggleDataBtn.addEventListener('click', async () => {
     // Call the function to toggle data when the toggleDataBtn is clicked
-    await toggleData();
+    await processNeoData();
 });
 
 getSpaceNewsBtn.addEventListener('click', async () => {
