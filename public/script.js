@@ -236,11 +236,7 @@ const spaceFacts = [
     "A day on Venus is longer than a year on Venus.",
     "There are more stars in the universe than grains of sand on Earth.",
     "The footprints on the Moon will be there for 100 million years.",
-    "One million Earths could fit inside the Sun.",
-    "There are more trees on Earth than stars in the Milky Way.",
-    "The Sun's mass takes up 99.86% of the solar system.",
-    "Neutron stars can spin 600 times per second.",
-    "There may be a planet made entirely of diamonds."
+    "One million Earths could fit inside the Sun."
 ];
 
 let currentFactIndex = 0;
