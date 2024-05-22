@@ -148,18 +148,12 @@ getSpaceNewsBtn.addEventListener('click', async () => {
     await getSpaceNews();
 });
 
-function scrollToDescription(desiredOffset) {
-  return (req, res) => {
+function scrollToDescription() {
+  const descriptionElement = document.getElementById("description");
+  const desiredOffset = 200; // Adjust offset for desired space
 
-    const descriptionElementId = 'description';
+  // Calculate target position considering offset
+  const targetY = descriptionElement.offsetTop - desiredOffset;
 
-    // Get the target position considering offset (server-side)
-    const targetY = document.getElementById(descriptionElementId).offsetTop - desiredOffset;
-
-    // Execute the scroll animation on the client-side using JavaScript
-    // Send the targetY value to the client
-    res.locals.targetY = targetY;
-  };
+  descriptionElement.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
-module.exports = scrollToDescription;
