@@ -67,6 +67,7 @@ const getSpaceNews = async () => {
       throw new Error(`Error fetching space news: ${response.status}`);
     }
     const data = await response.json();
+    console.log(data);
 
     // Check if data.articles exists before iterating
     if (data.articles) {
