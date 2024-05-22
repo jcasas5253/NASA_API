@@ -114,8 +114,15 @@ const getSpaceNews = async () => {
   }
 }
 
-const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn'); // Get the button element
+const toggleDataBtn = document.getElementById('toggleDataBtn');
+const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
+
+toggleDataBtn.addEventListener('click', async () => {
+    // Call the function to toggle data when the toggleDataBtn is clicked
+    await toggleData();
+});
 
 getSpaceNewsBtn.addEventListener('click', async () => {
-    await getSpaceNews(); // Call the getSpaceNews function when clicked
+    // Call the function to fetch space news when the getSpaceNewsBtn is clicked
+    await getSpaceNews();
 });
