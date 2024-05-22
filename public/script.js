@@ -149,9 +149,11 @@ getSpaceNewsBtn.addEventListener('click', async () => {
 });
 
 function scrollToDescription() {
-    // Get the element with the ID "description"
-    const descriptionElement = document.getElementById("description");
+  const descriptionElement = document.getElementById("description");
+  const desiredOffset = 100; // Adjust offset for desired space
 
-    // Scroll to the element smoothly
-    descriptionElement.scrollIntoView({ behavior: "smooth" });
+  // Calculate target position considering offset
+  const targetY = descriptionElement.offsetTop - desiredOffset;
+
+  descriptionElement.scrollIntoView({ behavior: "smooth", block: "start" });
 }
