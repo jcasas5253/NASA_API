@@ -52,7 +52,7 @@ h3 {
 
 .centered-gif {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -219,7 +219,7 @@ th {
 
 #scroll-btn {
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 48%;
     transform: translate(-50%, -50%);
     cursor: pointer;
@@ -271,7 +271,7 @@ th {
     #scroll-btn {
         position: absolute;
         left: 43%;
-        top: 80%;
+        top: 70%;
     }
 }
 
@@ -279,7 +279,7 @@ th {
     #scroll-btn {
         position: absolute;
         left: 42%;
-        top: 80%;
+        top: 70%;
     }
 }
 
@@ -287,7 +287,7 @@ th {
     #scroll-btn {
         position: absolute;
         left: 41%;
-        top: 80%;
+        top: 70%;
     }
 }
 
@@ -295,7 +295,7 @@ th {
     #scroll-btn {
         position: absolute;
         left: 38%;
-        top: 80%;
+        top: 70%;
     }
 }
 
