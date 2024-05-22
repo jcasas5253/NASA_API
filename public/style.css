@@ -57,13 +57,6 @@ h3 {
   transform: translate(-50%, -50%);
 }
 
-.gif-wrapper {
-  position: relative; /* This is important */
-  width: 250px; /* Match the gif width */
-  height: 250px; /* Match the gif height */
-  margin: 0 auto; /* Center the wrapper horizontally */
-}
-
 @keyframes zoom {
     0% {
         transform: scale(1);
@@ -203,6 +196,10 @@ th {
 
 #search-bar {
     width: auto;
+}
+
+#description  {
+    margin-top: 100vh;
 }
 
 .footer {
