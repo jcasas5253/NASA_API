@@ -103,14 +103,14 @@ const getEarthData = async (date) => {
   }
 };
 
-//searchBtn.addEventListener('click', async () => {
-    const selectedDate = searchInput.value;
-    if (selectedDate) {
-        //await getApodData(selectedDate);
-    } else {
-        // Handle empty date input (e.g., display error message to user)
-        console.error('Please select a date.');
-    }
+searchBtn.addEventListener('click', async () => {
+  const selectedDate = searchInput.value;
+  if (selectedDate) {
+    await getEarthData(selectedDate); // Call getEarthData with the date
+  } else {
+    // Handle empty date input (e.g., display error message to user)
+    console.error('Please select a date.');
+  }
 });
 
 const updateEarthDisplay = (data) => {
