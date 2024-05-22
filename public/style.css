@@ -133,7 +133,8 @@ th {
   text-transform: uppercase; /* Convert text to uppercase for a stronger feel */
 }
 
-.stylish {
+.stylish,
+.card {
     border: 5px solid white;
     box-shadow: 0px 0px 5px #fff !important;
     padding-top: 20px;
