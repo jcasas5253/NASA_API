@@ -99,10 +99,10 @@ const getSpaceNews = async () => {
 
         // Add elements to the article container and append it to the spaceNewsContainer
         articleContainer.appendChild(titleElement);
-        articleContainer.appendChild(descriptionElement);
         if (imageElement) {
           articleContainer.appendChild(imageElement);
         }
+        articleContainer.appendChild(descriptionElement);
         articleContainer.appendChild(linkElement);
 
         spaceNewsContainer.appendChild(articleContainer);
