@@ -148,12 +148,27 @@ getSpaceNewsBtn.addEventListener('click', async () => {
     await getSpaceNews();
 });
 
-function scrollToDescription() {
-  const descriptionElement = document.getElementById("description");
-  const desiredOffset = 100; // Adjust offset for desired space
+async function scrollToDescription(desiredOffset) {
+  const response = await fetch('/scroll-to-description', { method: 'GET' });
+  const data = await response.json();
 
-  // Calculate target position considering offset
-  const targetY = descriptionElement.offsetTop - desiredOffset;
+  const targetY = data.targetY;
 
-  descriptionElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  // Use window.scrollTo with animation (similar to previous example)
+  const scrollDuration = 1000; // Adjust duration for desired speed (milliseconds)
+  const currentY = window.scrollY;
+  let startTime = null;
+
+  const animateScroll = (timestamp) => {
+    if (!startTime) startTime = timestamp;
+    const progress = (timestamp - startTime) / scrollDuration;
+    const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) * (t - 1);
+    const newY = currentY + easeInOutQuad(progress) * difference;
+    window.scrollTo(0, newY);
+    if (progress < 1) {
+      requestAnimationFrame(animateScroll);
+    }
+  };
+
+  requestAnimationFrame(animateScroll);
 }

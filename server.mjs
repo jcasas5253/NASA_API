@@ -1,5 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch'; // Use node-fetch for server-side requests
+const scrollToDescription = require('./scroll.js'); // Require the scroll function
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable for port
@@ -46,6 +47,8 @@ app.get('/space-news', async (req, res) => {
     res.status(500).send('Internal Server Error'); // Handle errors appropriately
   }
 });
+
+app.get('/scroll-to-description', scrollToDescription(100));
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
