@@ -147,3 +147,11 @@ getSpaceNewsBtn.addEventListener('click', async () => {
     // Call the function to fetch space news when the getSpaceNewsBtn is clicked
     await getSpaceNews();
 });
+
+function scrollToDescription() {
+    // Get the element with the ID "description"
+    const descriptionElement = document.getElementById("description");
+
+    // Scroll to the element smoothly
+    descriptionElement.scrollIntoView({ behavior: "smooth" });
+}
