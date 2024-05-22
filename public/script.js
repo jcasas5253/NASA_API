@@ -90,17 +90,22 @@ const searchInput = document.getElementById('search-bar');
 const apodContainer = document.getElementById('apod-container');
 
 const getApodData = async (date) => {
-    try {
-        const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&date=${date}`);
-        if (!response.ok) {
-            throw new Error(`Error fetching APOD data: ${response.status}`);
-        }
-        const data = await response.json();
-        updateApodDisplay(data);
-    } catch (error) {
-        console.error('Error fetching APOD data:', error);
-        // Handle errors (e.g., display error message to user)
+  try {
+    // Fetch API key first
+    const apiKeyResponse = await fetch('/get-api-key');
+    if (!apiKeyResponse.ok) {
+      throw new Error('Error fetching API key');
     }
+    const apiKeyData = await apiKeyResponse.json();
+    const apiKey = apiKeyData.apiKey; // Extract the API key
+
+    // Use the fetched API key for APOD data request
+    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=<span class="math-inline">\{apiKey\}&date\=</span>{date}`);
+    // ... rest of the getApodData function logic ...
+  } catch (error) {
+    console.error('Error fetching APOD data:', error);
+    // Handle errors (e.g., display error message to user)
+  }
 };
 
 searchBtn.addEventListener('click', async () => {
