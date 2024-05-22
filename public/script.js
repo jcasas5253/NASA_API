@@ -228,3 +228,82 @@ function smoothScrollTo(targetY, duration) {
 
     requestAnimationFrame(step);
 }
+
+// List of fun space facts
+const spaceFacts = [
+    "Space is completely silent.",
+    "The hottest planet in our solar system is Venus.",
+    "A day on Venus is longer than a year on Venus.",
+    "There are more stars in the universe than grains of sand on Earth.",
+    "The footprints on the Moon will be there for 100 million years.",
+    "One million Earths could fit inside the Sun.",
+    "There are more trees on Earth than stars in the Milky Way.",
+    "The Sun's mass takes up 99.86% of the solar system.",
+    "Neutron stars can spin 600 times per second.",
+    "There may be a planet made entirely of diamonds."
+];
+
+let currentFactIndex = 0;
+const factDisplayDuration = 5000; // Duration to display each fact (5 seconds)
+
+// Highlight the current pagination radio button
+const highlightPaginationButton = (index) => {
+    const buttons = document.querySelectorAll('.pagination-radio');
+    buttons.forEach(button => {
+        if (parseInt(button.getAttribute('data-index'), 10) === index) {
+            button.checked = true;
+        } else {
+            button.checked = false;
+        }
+    });
+};
+
+// Function to update the displayed fact
+const updateSpaceFact = (index) => {
+    const factElement = document.getElementById('space-fact');
+    factElement.textContent = spaceFacts[index];
+    highlightPaginationButton(index);
+};
+
+// Initial fact display
+updateSpaceFact(currentFactIndex);
+
+// Set interval to update fact periodically
+const intervalId = setInterval(() => {
+    currentFactIndex = (currentFactIndex + 1) % spaceFacts.length;
+    updateSpaceFact(currentFactIndex);
+}, factDisplayDuration);
+
+// Create pagination radio buttons
+const createPagination = () => {
+    const paginationContainer = document.getElementById('pagination-container');
+    spaceFacts.forEach((_, index) => {
+        const radioWrapper = document.createElement('div');
+        radioWrapper.classList.add('form-check', 'form-check-inline');
+
+        const radioButton = document.createElement('input');
+        radioButton.type = 'radio';
+        radioButton.name = 'pagination-radio';
+        radioButton.id = `pagination-radio-${index}`;
+        radioButton.classList.add('form-check-input', 'pagination-radio');
+        radioButton.setAttribute('data-index', index);
+
+        const label = document.createElement('label');
+        label.classList.add('form-check-label');
+        label.setAttribute('for', `pagination-radio-${index}`);
+        /*label.textContent = index + 1;*/
+
+        radioButton.addEventListener('click', (event) => {
+            currentFactIndex = parseInt(event.target.getAttribute('data-index'), 10);
+            updateSpaceFact(currentFactIndex);
+        });
+
+        radioWrapper.appendChild(radioButton);
+        radioWrapper.appendChild(label);
+        paginationContainer.appendChild(radioWrapper);
+    });
+};
+
+// Call createPagination to initialize pagination radio buttons
+createPagination();
+highlightPaginationButton(currentFactIndex);
