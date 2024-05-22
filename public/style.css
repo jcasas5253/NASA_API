@@ -151,7 +151,8 @@ th {
 }*/
 
 /* Button Styles */
-#toggleDataBtn {
+#toggleDataBtn,
+#getSpaceNewsBtn{
     background-color: #0b3d91;
     color: #fff; /* White text for contrast */
     border: none; /* Remove default border */
