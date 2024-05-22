@@ -1,8 +1,7 @@
-// Neo data section
 const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');
-const today = new Date().toISOString().split('T')[0];
+const spaceNewsContainer = document.getElementById('space-news-container');
 
 const getNeoData = async () => {
   try {
@@ -45,44 +44,4 @@ const processNeoData = (data) => {
         tableRow.appendChild(closeApproachDateCell);
 
         const isPotentiallyHazardous = neo.is_potentially_hazardous_asteroid;
-        const hazardousCell = document.createElement('td');
-        hazardousCell.textContent = isPotentiallyHazardous ? 'Yes' : 'No';
-        tableRow.appendChild(hazardousCell);
-
-        tableBody.appendChild(tableRow);
-      }
-    } else {
-      // Handle no NEO data found for today
-      const emptyRow = document.createElement('tr');
-      const emptyCell = document.createElement('td');
-      emptyCell.textContent = 'No Near-Earth Objects found for today.';
-      emptyCell.colSpan = 3; // Span across all columns
-      emptyRow.appendChild(emptyCell);
-      tableBody.appendChild(emptyRow);
-    }
-  } else {
-    // Handle potential data structure changes or missing data
-    const emptyRow = document.createElement('tr');
-    const emptyCell = document.createElement('td');
-    emptyCell.textContent = 'Error processing NEO data.';
-    emptyCell.colSpan = 3; // Span across all columns
-    emptyRow.appendChild(emptyCell);
-    tableBody.appendChild(emptyRow);
-  }
-};
-
-let isButtonClicked = false;
-
-toggleDataBtn.addEventListener('click', async () => {
-  if (isButtonClicked) {
-    // Hide NEO data on button click
-    neoContainer.style.display = 'none';
-    toggleDataBtn.textContent = 'Learn More';
-  } else {
-    // Fetch and display NEO data on button click
-    await getNeoData();
-    neoContainer.style.display = 'block';
-    toggleDataBtn.textContent = 'Close Table';
-  }
-  isButtonClicked = !isButtonClicked;
-});
+        const hazardousCell = document.createElement
