@@ -1,4 +1,3 @@
-const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');
 const spaceNewsContainer = document.getElementById('space-news-container');
