@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch'; // Use node-fetch for server-side requests
-const scrollToDescription = require('./scroll.js'); // Require the scroll function
+import scrollToDescription from './scroll.js';
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable for port
