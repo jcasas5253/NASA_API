@@ -148,27 +148,18 @@ getSpaceNewsBtn.addEventListener('click', async () => {
     await getSpaceNews();
 });
 
-async function scrollToDescription(desiredOffset) {
-  const response = await fetch('/scroll-to-description', { method: 'GET' });
-  const data = await response.json();
+function scrollToDescription(desiredOffset) {
+  return (req, res) => {
 
-  const targetY = data.targetY;
+    const descriptionElementId = 'description';
 
-  // Use window.scrollTo with animation (similar to previous example)
-  const scrollDuration = 1000; // Adjust duration for desired speed (milliseconds)
-  const currentY = window.scrollY;
-  let startTime = null;
+    // Get the target position considering offset (server-side)
+    const targetY = document.getElementById(descriptionElementId).offsetTop - desiredOffset;
 
-  const animateScroll = (timestamp) => {
-    if (!startTime) startTime = timestamp;
-    const progress = (timestamp - startTime) / scrollDuration;
-    const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) * (t - 1);
-    const newY = currentY + easeInOutQuad(progress) * difference;
-    window.scrollTo(0, newY);
-    if (progress < 1) {
-      requestAnimationFrame(animateScroll);
-    }
+    // Execute the scroll animation on the client-side using JavaScript
+    // Send the targetY value to the client
+    res.locals.targetY = targetY;
   };
-
-  requestAnimationFrame(animateScroll);
 }
+
+module.exports = scrollToDescription;
