@@ -97,6 +97,10 @@ const getSpaceNews = async () => {
         articleContainer.appendChild(linkElement);
 
         spaceNewsContainer.appendChild(articleContainer);
+
+        //hide button
+        getSpaceNewsBtn.style.display = 'none';
+        
       });
     } else {
       // Handle case where data.results is missing or empty
