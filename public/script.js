@@ -44,4 +44,63 @@ const processNeoData = (data) => {
         tableRow.appendChild(closeApproachDateCell);
 
         const isPotentiallyHazardous = neo.is_potentially_hazardous_asteroid;
-        const hazardousCell = document.createElement
+        const hazardousCell = document.createElement('td');
+        hazardousCell.textContent = isPotentiallyHazardous ? 'Yes' : 'No';
+        tableRow.appendChild(hazardousCell);
+
+        tableBody.appendChild(tableRow);
+      }
+    } else {
+      // Handle case where no near-earth objects are found
+      tableBody.innerHTML = '<tr><td colspan="3">No Near-Earth Objects Found Today</td></tr>';
+    }
+  } else {
+    // Handle case where data is missing or invalid
+    tableBody.innerHTML = '<tr><td colspan="3">Error: Unable to process NEO data</td></tr>';
+  }
+};
+
+const getSpaceNews = async () => {
+  try {
+    const response = await fetch('/space-news');
+    if (!response.ok) {
+      throw new Error(`Error fetching space news: ${response.status}`);
+    }
+    const data = await response.json();
+
+    // Process space news data and create HTML elements here
+    spaceNewsContainer.innerHTML = ''; // Clear existing content
+
+    // Code to process and display space news articles (similar to previous example)
+    data.articles.forEach(article => {
+      const articleContainer = document.createElement('div');
+      articleContainer.classList.add('article'); // Add CSS class for styling
+
+      // Create elements for title, description, image (if available), and link
+      const titleElement = document.createElement('h3');
+      titleElement.textContent = article.title;
+      const descriptionElement = document.createElement('p');
+      descriptionElement.textContent = article.summary;
+      const imageElement = article.imageUrl ? document.createElement('img') : null;
+      if (imageElement) {
+        imageElement.src = article.imageUrl;
+        imageElement.alt = article.title;
+      }
+      const linkElement = document.createElement('a');
+      linkElement.href = article.url;
+      linkElement.textContent = 'Read More';
+
+      // Add elements to the article container and append it to the spaceNewsContainer
+      articleContainer.appendChild(titleElement);
+      articleContainer.appendChild(descriptionElement);
+      if (imageElement) {
+        articleContainer.appendChild(imageElement);
+      }
+      articleContainer.appendChild(linkElement);
+
+      spaceNewsContainer.appendChild(articleContainer);
+    });
+
+  } catch (error) {
+    console.error('Error fetching space news:', error);
+    // Handle
