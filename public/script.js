@@ -90,9 +90,11 @@ const getSpaceNews = async () => {
         if (imageElement) {
           imageElement.src = article.image_url;
           imageElement.alt = article.title;
+          imageElement.style.width = '100%'; // Set image width to 100%
         }
         const linkElement = document.createElement('a');
         linkElement.href = article.url;
+        linkElement.className = 'btn btn-primary mt-3'; // Add button classes
         linkElement.textContent = 'Read More';
 
         // Add elements to the article container and append it to the spaceNewsContainer
