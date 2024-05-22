@@ -104,3 +104,5 @@ const getSpaceNews = async () => {
   } catch (error) {
     console.error('Error fetching space news:', error);
     // Handle
+  }
+}
