@@ -89,6 +89,7 @@ const getSpaceNews = async () => {
         linkElement.href = article.url;
         linkElement.className = 'btn btn-primary mt-3'; // Add button classes
         linkElement.textContent = 'Read More';
+        linkElement.target = '_blank'; // Set target attribute to _blank
 
         // Add elements to the article container and append it to the spaceNewsContainer
         articleContainer.appendChild(titleElement);
