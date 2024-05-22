@@ -106,3 +106,9 @@ const getSpaceNews = async () => {
     // Handle
   }
 }
+
+const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn'); // Get the button element
+
+getSpaceNewsBtn.addEventListener('click', async () => {
+    await getSpaceNews(); // Call the getSpaceNews function when clicked
+});
