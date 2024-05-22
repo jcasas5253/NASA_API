@@ -118,8 +118,6 @@ toggleDataBtn.addEventListener('click', async () => {
   isButtonClicked = !isButtonClicked;
 });
 
-const newsCard = document.getElementById('news-card');
-
 getSpaceNewsBtn.addEventListener('click', async () => {
     // Call the function to fetch space news when the getSpaceNewsBtn is clicked
     await getSpaceNews();
