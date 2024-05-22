@@ -33,35 +33,35 @@ app.get('/neo-data', async (req, res) => {
   }
 });
 
-// ... other server-side code
-
 app.get('/get-earth-data', async (req, res) => {
-  const apiKey = process.env.NASA_API_KEY; // Access your securely stored key
-  const date = req.query.date; // Get the date parameter from the request
+  const apiKey = process.env.NASA_API_KEY;
 
-  if (!apiKey || !date) {
-    return res.status(400).send('Missing API key or date parameter');
+  if (!apiKey) {
+    return res.status(400).send('Missing NASA API Key! Set the NASA_API_KEY environment variable.');
   }
 
   try {
-    const response = await fetch(`https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${apiKey}`);
-    if (!response.ok) {
-      throw new Error(`Error fetching Earth data: ${response.status}`);
+    // Fetch data for the newest available date
+    const newestDateResponse = await fetch(`https://api.nasa.gov/EPIC/api/natural/available?api_key=${apiKey}`);
+    if (newestDateResponse.ok) {
+      const newestDateData = await newestDateResponse.json();
+      const newestDate = newestDateData.available[newestDateData.available.length - 1]; // Get the newest date
+      
+      // Fetch data for the newest date
+      const newestImageResponse = await fetch(`https://api.nasa.gov/EPIC/api/natural/date/${newestDate}?api_key=${apiKey}`);
+      if (newestImageResponse.ok) {
+        const newestImageData = await newestImageResponse.json();
+        res.json(newestImageData);
+      } else {
+        console.error('Error fetching data for newest image:', newestImageResponse.status);
+        res.status(500).send('Internal Server Error');
+      }
+    } else {
+      console.error('Error fetching available dates:', newestDateResponse.status);
+      res.status(500).send('Internal Server Error');
     }
-    const data = await response.json();
-    res.json(data);
   } catch (error) {
     console.error('Error fetching Earth data:', error);
     res.status(500).send('Internal Server Error');
   }
-});
-
-// Route to serve index.html (without embedding the API key)
-app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
 });
