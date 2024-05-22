@@ -118,7 +118,6 @@ toggleDataBtn.addEventListener('click', async () => {
   isButtonClicked = !isButtonClicked;
 });
 
-const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
 const newsCard = document.getElementById('news-card');
 
 getSpaceNewsBtn.addEventListener('click', async () => {
