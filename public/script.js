@@ -1,6 +1,6 @@
+const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');
-const spaceNewsContainer = document.getElementById('space-news-container');
 const today = new Date().toISOString().split('T')[0];
 
 const getNeoData = async () => {
@@ -51,14 +51,40 @@ const processNeoData = (data) => {
         tableBody.appendChild(tableRow);
       }
     } else {
-      // Handle case where no near-earth objects are found
-      tableBody.innerHTML = '<tr><td colspan="3">No Near-Earth Objects Found Today</td></tr>';
+      // Handle no NEO data found for today
+      const emptyRow = document.createElement('tr');
+      const emptyCell = document.createElement('td');
+      emptyCell.textContent = 'No Near-Earth Objects found for today.';
+      emptyCell.colSpan = 3; // Span across all columns
+      emptyRow.appendChild(emptyCell);
+      tableBody.appendChild(emptyRow);
     }
   } else {
-    // Handle case where data is missing or invalid
-    tableBody.innerHTML = '<tr><td colspan="3">Error: Unable to process NEO data</td></tr>';
+    // Handle potential data structure changes or missing data
+    const emptyRow = document.createElement('tr');
+    const emptyCell = document.createElement('td');
+    emptyCell.textContent = 'Error processing NEO data.';
+    emptyCell.colSpan = 3; // Span across all columns
+    emptyRow.appendChild(emptyCell);
+    tableBody.appendChild(emptyRow);
   }
 };
+
+let isButtonClicked = false;
+
+toggleDataBtn.addEventListener('click', async () => {
+  if (isButtonClicked) {
+    // Hide NEO data on button click
+    neoContainer.style.display = 'none';
+    toggleDataBtn.textContent = 'Learn More';
+  } else {
+    // Fetch and display NEO data on button click
+    await getNeoData();
+    neoContainer.style.display = 'block';
+    toggleDataBtn.textContent = 'Close Table';
+  }
+  isButtonClicked = !isButtonClicked;
+});
 
 const getSpaceNews = async () => {
   try {
@@ -114,18 +140,7 @@ const getSpaceNews = async () => {
   }
 }
 
-const toggleDataBtn = document.getElementById('toggleDataBtn');
 const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
-
-toggleDataBtn.addEventListener('click', async () => {
-    try {
-        // Call the function to fetch NEO data
-        await getNeoData();
-    } catch (error) {
-        console.error('Error toggling NEO data:', error);
-        // Handle errors (e.g., display error message to user)
-    }
-});
 
 getSpaceNewsBtn.addEventListener('click', async () => {
     // Call the function to fetch space news when the getSpaceNewsBtn is clicked
