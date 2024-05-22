@@ -67,13 +67,17 @@ const getSpaceNews = async () => {
       throw new Error(`Error fetching space news: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
+    console.log(data); // Log the response data
 
-    // Check if data.articles exists before iterating
-    if (data.articles) {
+    // Check if data.results exists before iterating
+    if (data.results && Array.isArray(data.results) && data.results.length > 0) {
       // Process space news data and create HTML elements here
       spaceNewsContainer.innerHTML = ''; // Clear existing content
-      data.articles.forEach(article => {
+      
+      // Limit the results to top 4 articles
+      const topArticles = data.results.slice(0, 4);
+      
+      topArticles.forEach(article => {
         const articleContainer = document.createElement('div');
         articleContainer.classList.add('article'); // Add CSS class for styling
 
@@ -82,9 +86,9 @@ const getSpaceNews = async () => {
         titleElement.textContent = article.title;
         const descriptionElement = document.createElement('p');
         descriptionElement.textContent = article.summary;
-        const imageElement = article.imageUrl ? document.createElement('img') : null;
+        const imageElement = article.image_url ? document.createElement('img') : null;
         if (imageElement) {
-          imageElement.src = article.imageUrl;
+          imageElement.src = article.image_url;
           imageElement.alt = article.title;
         }
         const linkElement = document.createElement('a');
@@ -102,7 +106,7 @@ const getSpaceNews = async () => {
         spaceNewsContainer.appendChild(articleContainer);
       });
     } else {
-      // Handle case where data.articles is missing
+      // Handle case where data.results is missing or empty
       console.warn("No space news articles found in the response.");
       spaceNewsContainer.innerHTML = 'No space news available at this time.';
     }
