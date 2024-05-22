@@ -10,10 +10,13 @@ body {
 
 h1 {
     font-size: 1.8em;
+    font-weight: bold;
 }
 
 h3 {
     margin-top: 40px;
+    color: black;
+    font-weight: bold;
 }
 
 .main-wrapper {
