@@ -220,7 +220,7 @@ th {
 #scroll-btn {
     position: absolute;
     top: 70%;
-    left: 47.8%;
+    left: 48%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     z-index: 999;
@@ -244,6 +244,55 @@ th {
     background-color: rgba(255, 255, 255, 0.5);
     height: 65px;
     text-align: center;
+}
+
+@media screen and (max-width: 1152px) {
+    #scroll-btn {
+     position: absolute;
+     left: 47%;
+    }
+}
+
+@media screen and (max-width: 965px) {
+    #scroll-btn {
+        position: absolute;
+        left: 46%;
+    }
+}
+
+@media screen and (max-width: 685px) {
+    #scroll-btn {
+        position: absolute;
+        left: 45%;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    #scroll-btn {
+        position: absolute;
+        left: 43%;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    #scroll-btn {
+        position: absolute;
+        left: 42%;
+    }
+}
+
+@media screen and (max-width: 391px) {
+    #scroll-btn {
+        position: absolute;
+        left: 41%;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    #scroll-btn {
+        position: absolute;
+        left: 38%;
+    }
 }
 
 @media screen and (max-width: 767px) {
