@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch'; // Use node-fetch for server-side requests
-import scrollToDescription from './script.js';
+import scrollToDescription from '../public/script.js';
 
 const app = express();
 const port = process.env.PORT || 3000; // Use environment variable for port
