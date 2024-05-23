@@ -202,6 +202,22 @@ main {
         color: red;
     }
 
+.close-table-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    float: right;
+    position: relative;
+    top: -250px;
+    right: 10px;
+}
+
+.close-table-btn:hover {
+    color: red;
+}
+
 #neo-table {
     width: 100%;
     border-collapse: collapse;

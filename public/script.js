@@ -1,3 +1,5 @@
+// This section of your code should remain as it is
+
 const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');
@@ -109,13 +111,34 @@ toggleDataBtn.addEventListener('click', async () => {
         // Hide NEO data on button click
         neoContainer.style.display = 'none';
         toggleDataBtn.textContent = 'Learn More';
+        // Hide X button if it exists
+        const closeButton = document.getElementById('closeTableBtn');
+        if (closeButton) closeButton.style.display = 'none';
     } else {
         // Fetch and display NEO data on button click
         await getNeoData();
         neoContainer.style.display = 'block';
-        toggleDataBtn.textContent = 'Close Table';
+        toggleDataBtn.style.display = 'none'; // Hide Learn More button
+        // Create and append X button
+        const closeButton = document.createElement('button');
+        closeButton.textContent = 'X';
+        closeButton.id = 'closeTableBtn';
+        closeButton.classList.add('close-table-btn');
+        neoContainer.appendChild(closeButton);
     }
     isButtonClicked = !isButtonClicked;
+});
+
+// Event listener for X button on the table
+document.addEventListener('click', (event) => {
+    if (event.target && event.target.id === 'closeTableBtn') {
+        // Remove table
+        neoContainer.style.display = 'none';
+        // Hide X button
+        event.target.style.display = 'none';
+        // Show Learn More button
+        toggleDataBtn.style.display = 'block';
+    }
 });
 
 const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
