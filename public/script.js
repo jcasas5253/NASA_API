@@ -1,5 +1,3 @@
-// This section of your code should remain as it is
-
 const toggleDataBtn = document.getElementById('toggleDataBtn');
 const neoContainer = document.getElementById('neo-container');
 const neoTable = document.getElementById('neo-table');

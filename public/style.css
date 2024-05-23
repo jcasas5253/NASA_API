@@ -196,6 +196,9 @@ main {
     top: -20px;
     cursor: pointer;
     float: right;
+    position: relative;
+    right: -30px;
+    top: -20px;
 }
 
     .close-news-btn:hover {
