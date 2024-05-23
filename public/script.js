@@ -124,7 +124,8 @@ toggleDataBtn.addEventListener('click', async () => {
         closeButton.textContent = 'X';
         closeButton.id = 'closeTableBtn';
         closeButton.classList.add('close-table-btn');
-        neoContainer.appendChild(closeButton);
+        // Insert the X button as the first child of neoContainer
+        neoContainer.insertBefore(closeButton, neoContainer.firstChild);
     }
     isButtonClicked = !isButtonClicked;
 });
@@ -144,6 +145,7 @@ document.addEventListener('click', (event) => {
 const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
 const newsCard = document.getElementById('news-card');
 const closeNewsBtn = document.getElementById('closeNewsBtn'); // Add close button
+
 getSpaceNewsBtn.addEventListener('click', async () => {
     // Call the function to fetch space news when the getSpaceNewsBtn is clicked
     await getSpaceNews();
@@ -155,20 +157,29 @@ getSpaceNewsBtn.addEventListener('click', async () => {
         newsCard.style.height = '300px';
     }
 
-    //hide news button
+    // Hide news button
     getSpaceNewsBtn.style.display = "none";
 
-    // Show the close button when fetching news
-    closeNewsBtn.style.display = 'block';
+    // Create and append X button for news section
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'X';
+    closeButton.id = 'closeNewsBtn';
+    closeButton.classList.add('close-news-btn');
+    // Insert the X button as the first child of newsCard
+    newsCard.insertBefore(closeButton, newsCard.firstChild);
 });
 
-closeNewsBtn.addEventListener('click', () => {
-    // Remove articles and hide the news card
-    spaceNewsContainer.innerHTML = '';
-    newsCard.style.height = '300px'; // Reset height to 300px
-    closeNewsBtn.style.display = 'none'; // Hide the close button
-    // Show the Fetch News button again
-    getSpaceNewsBtn.style.display = 'block';
+document.addEventListener('click', (event) => {
+    if (event.target && event.target.id === 'closeNewsBtn') {
+        // Remove articles and hide the news card
+        spaceNewsContainer.innerHTML = '';
+        newsCard.style.height = '300px'; // Reset height to 300px
+        // Remove the X button for news section
+        const closeButton = document.getElementById('closeNewsBtn'); // Correct ID here
+        if (closeButton) closeButton.remove();
+        // Show the Fetch News button again
+        getSpaceNewsBtn.style.display = 'block';
+    }
 });
 
 const getSpaceNews = async () => {

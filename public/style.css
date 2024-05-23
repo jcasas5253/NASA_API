@@ -192,8 +192,7 @@ main {
     color: white;
     font-size: 24px;
     position: relative;
-    top: -60px;
-    right: 10px;
+    top: -20px;
     cursor: pointer;
     float: right;
 }
@@ -209,9 +208,7 @@ main {
     font-size: 24px;
     cursor: pointer;
     float: right;
-    position: absolute;
-    top: 237%;
-    right: 10%;
+    margin: 10px;
 }
 
 .close-table-btn:hover {
