@@ -372,6 +372,12 @@ th {
 }
 
 @media screen and (max-width: 555px) {
+    .col-md-12 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 555px) {
     #scroll-btn {
         position: absolute;
         left: 43%;
@@ -404,10 +410,7 @@ th {
 }
 
 @media screen and (max-width: 767px) {
-  #description,
-  #asteroids,
-  #space-news,
-  #asteroid-table {
-    width: 100% !important;
-  }
+    .col-md-12 {
+        width: 100% !important;
+    }
 }
