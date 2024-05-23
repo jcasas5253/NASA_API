@@ -254,7 +254,10 @@ th {
     margin-bottom: 10px;
 }
 
-#theme-btn {
+.col-md-12 {
+    text-align: center;
+}
+    #theme-btn {
     cursor: pointer;
     z-index: 999;
     border-radius: 100px;
