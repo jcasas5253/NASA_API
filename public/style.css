@@ -55,6 +55,7 @@ th {
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0;
 }
 
 .centered-gif {
@@ -335,6 +336,10 @@ th {
     text-align: center;
 }
 
+#neo-container {
+    width:60%;
+}
+
 .footer {
     display: flex; /* Make footer a flex container */
     align-items: center; /* Vertically center content */
@@ -415,5 +420,8 @@ th {
 @media screen and (max-width: 767px) {
     .col-md-12 {
         width: 100% !important;
+    }
+    #neo-container {
+        width: 105% !important;
     }
 }
