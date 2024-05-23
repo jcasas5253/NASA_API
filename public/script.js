@@ -132,6 +132,9 @@ getSpaceNewsBtn.addEventListener('click', async () => {
         newsCard.style.height = '300px';
     }
 
+    //hide news button
+    getSpaceNewsBtn.style.display = "none";
+
     // Show the close button when fetching news
     closeNewsBtn.style.display = 'block';
 });
@@ -139,7 +142,8 @@ getSpaceNewsBtn.addEventListener('click', async () => {
 closeNewsBtn.addEventListener('click', () => {
     // Remove articles and hide the news card
     spaceNewsContainer.innerHTML = '';
-    newsCard.style.height = '300px'; // Set the height back to 300px
+    newsCard.style.height = '300px'; // Reset height to 300px
+    closeNewsBtn.style.display = 'none'; // Hide the close button
     // Show the Fetch News button again
     getSpaceNewsBtn.style.display = 'block';
 });
