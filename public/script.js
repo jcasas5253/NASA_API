@@ -492,3 +492,48 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     tryAgainButton.addEventListener('click', resetQuiz);
 });
+
+const spaceFactsContainer = document.getElementById('space-facts-container');
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+spaceFactsContainer.addEventListener('touchstart', (event) => {
+    touchStartX = event.touches[0].clientX;
+});
+
+spaceFactsContainer.addEventListener('touchmove', (event) => {
+    touchEndX = event.touches[0].clientX;
+});
+
+spaceFactsContainer.addEventListener('touchend', () => {
+    const deltaX = touchEndX - touchStartX;
+    const threshold = 50; // Adjust the threshold according to your preference
+
+    if (deltaX > threshold) {
+        // Swipe left
+        showPreviousFact();
+    } else if (deltaX < -threshold) {
+        // Swipe right
+        showNextFact();
+    }
+});
+
+// Function to display the next fact
+const showNextFact = () => {
+    currentFactIndex = (currentFactIndex + 1) % spaceFacts.length;
+    updateSpaceFact(currentFactIndex);
+};
+
+// Function to display the previous fact
+const showPreviousFact = () => {
+    currentFactIndex = (currentFactIndex - 1 + spaceFacts.length) % spaceFacts.length;
+    updateSpaceFact(currentFactIndex);
+};
+
+
+const prevSlideBtn = document.getElementById('prev-slide-btn');
+const nextSlideBtn = document.getElementById('next-slide-btn');
+
+prevSlideBtn.addEventListener('click', showPreviousFact);
+nextSlideBtn.addEventListener('click', showNextFact);

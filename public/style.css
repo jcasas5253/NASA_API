@@ -384,6 +384,10 @@ th {
     text-align: center;
 }
 
+.navigation-arrows {
+    margin-top: 25px;
+}
+
 @media screen and (max-width: 1199px) {
     .close-news-btn {
         position: relative;
