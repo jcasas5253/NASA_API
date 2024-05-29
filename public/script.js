@@ -142,15 +142,10 @@ document.addEventListener('click', (event) => {
 
 const getSpaceNewsBtn = document.getElementById('getSpaceNewsBtn');
 const newsCard = document.getElementById('news-card');
-const closeNewsBtn = document.getElementById('closeNewsBtn');
-const spaceNewsTitle = document.querySelector('#news-card h1'); // Select the title
 
 getSpaceNewsBtn.addEventListener('click', async () => {
     // Call the function to fetch space news when the getSpaceNewsBtn is clicked
     await getSpaceNews();
-
-    // Hide the "Latest Space News" title
-    spaceNewsTitle.style.display = 'none';
 
     // Toggle the height of the card to 'auto' after fetching space news
     if (newsCard.style.height === '300px') {
@@ -162,23 +157,28 @@ getSpaceNewsBtn.addEventListener('click', async () => {
     // Hide news button
     getSpaceNewsBtn.style.display = "none";
 
-    // Show the close button
-    closeNewsBtn.style.display = 'block';
+    // Create and append Close News button for news section
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close News';
+    closeButton.id = 'closeNewsBtn';
+    closeButton.classList.add('btn', 'btn-primary', 'mt-3');
+    // Insert the Close News button after the news articles
+    newsCard.insertAdjacentElement('afterend', closeButton);
 });
 
-closeNewsBtn.addEventListener('click', () => {
-    // Remove articles and hide the news card
-    spaceNewsContainer.innerHTML = '';
-    newsCard.style.height = '300px'; // Reset height to 300px
-
-    // Show the "Latest Space News" title
-    spaceNewsTitle.style.display = 'block';
-
-    // Hide the close button
-    closeNewsBtn.style.display = 'none';
-
-    // Show the Fetch News button again
-    getSpaceNewsBtn.style.display = 'block';
+document.addEventListener('click', (event) => {
+    if (event.target && event.target.id === 'closeNewsBtn') {
+        // Check if the button is currently visible
+        if (event.target.style.display !== 'none') {
+            // Remove articles and hide the news card
+            spaceNewsContainer.innerHTML = '';
+            newsCard.style.height = '300px'; // Reset height to 300px
+            // Hide the Close News button for news section
+            event.target.style.display = 'none';
+            // Show the Fetch News button again
+            getSpaceNewsBtn.style.display = 'block';
+        }
+    }
 });
 
 const getSpaceNews = async () => {
@@ -220,15 +220,22 @@ const getSpaceNews = async () => {
                 spaceNewsContainer.appendChild(articleContainer);
             });
 
+            // Hide button
+            getSpaceNewsBtn.style.display = 'none';
+
         } else {
             // Handle case where data.results is missing or empty
             console.warn("No space news articles found in the response.");
             spaceNewsContainer.innerHTML = 'No space news available at this time.';
+            // Show the original "Get Space News" button
+            getSpaceNewsBtn.style.display = 'block';
         }
 
     } catch (error) {
         console.error('Error fetching space news:', error);
         spaceNewsContainer.innerHTML = 'An error occurred while fetching space news. Please try again later.';
+        // Show the original "Get Space News" button
+        getSpaceNewsBtn.style.display = 'block';
     }
 };
 
