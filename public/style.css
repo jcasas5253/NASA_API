@@ -384,6 +384,13 @@ th {
     text-align: center;
 }
 
+@media screen and (max-width: 1199px) {
+    .close-news-btn {
+        position: relative;
+        right: -6px;
+    }
+}
+
 @media screen and (max-width: 1152px) {
     #scroll-btn {
      position: absolute;
