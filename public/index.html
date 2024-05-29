@@ -123,19 +123,22 @@
                 </div>
                 <div class="col-md-6 d-flex flex-column align-items-center stylish mx-auto" id="quiz-section" style="margin-bottom: 100px; text-align: center;">
                     <div class="main-quiz">
-                    <h1 style="padding:20px;">Quiz Time!</h1>
-                    <div class="progress" style="width: 100%; margin-bottom: 20px;">
-                        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <h1 style="padding:20px;">Quiz Time!</h1>
+                        <div class="progress" style="width: 100%; margin-bottom: 20px;">
+                            <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div id="quiz-container" class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;"></div>
+                                    <p id="question" class="lead"></p>
+                                    <div id="answers" class="mb-3"></div>
+                                    <button id="next-question" class="btn btn-primary">Next</button>
+                                    <button id="try-again" class="btn btn-secondary" style="display: none;">Try Again</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="quiz-container">
-                        <p id="question" style="font-size: 1.2em;"></p>
-                        <div id="answers"></div>
-                        <button id="next-question" class="btn btn-primary mt-3" style="display: none;">Next</button>
-                        <button id="try-again" class="btn btn-secondary" style="display: none;">Try Again</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>

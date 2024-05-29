@@ -304,6 +304,29 @@ th {
     margin-bottom: 20px;
 }
 
+#quiz-container {
+    margin: 20px;
+}
+
+#progress-bar {
+    height: 20px;
+}
+
+.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.correct {
+    background-color: #28a745;
+    color: white;
+}
+
+.incorrect {
+    background-color: #dc3545;
+    color: white;
+}
+
 #getSpaceNewsBtn {
     margin-top: 20%;
 }

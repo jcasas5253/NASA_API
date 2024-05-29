@@ -361,7 +361,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const tryAgainButton = document.getElementById('try-again');
     const progressBar = document.getElementById('progress-bar');
 
-    // Sample space facts for the quiz
     const spaceFacts = [
         {
             question: 'Is Venus hotter than Mercury?',
@@ -383,21 +382,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let currentQuestionIndex = 0;
     let userScore = 0;
+    let userAnswers = [];
 
     const displayQuestion = (index) => {
         const currentQuestion = spaceFacts[index];
         questionElement.textContent = currentQuestion.question;
         answersElement.innerHTML = '';
 
-        // Options based on the current question
         let options;
         switch (currentQuestion.correctAnswer) {
             case 'Yes':
             case 'No':
                 options = ['Yes', 'No'];
-                break;
-            case 'Venus':
-                options = ['Venus', 'Mars', 'Earth'];
                 break;
             case '100 million years':
                 options = ['100 million years', '10 years', '1 million years'];
@@ -406,34 +402,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 options = ['One million', '100 thousand', '1 billion'];
                 break;
             default:
-                options = ['Yes', 'No']; // Default options
+                options = ['Yes', 'No'];
         }
 
         options.forEach(option => {
             const button = document.createElement('button');
             button.classList.add('btn', 'btn-secondary', 'm-2');
             button.textContent = option;
-            button.addEventListener('click', () => handleAnswer(option));
+            button.addEventListener('click', () => handleAnswer(button, option));
             answersElement.appendChild(button);
         });
 
         nextButton.style.display = 'none';
     };
 
-    const handleAnswer = (selectedAnswer) => {
+    const handleAnswer = (button, selectedAnswer) => {
         const currentQuestion = spaceFacts[currentQuestionIndex];
-        if (selectedAnswer === currentQuestion.correctAnswer) {
-            userScore++;
-        }
-
-        currentQuestionIndex++;
-        updateProgressBar();
-
-        if (currentQuestionIndex < spaceFacts.length) {
-            nextButton.style.display = 'block';
-        } else {
-            displayResults();
-        }
+        userAnswers[currentQuestionIndex] = selectedAnswer;
+        answersElement.querySelectorAll('button').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        button.classList.add('selected');
+        nextButton.style.display = 'block';
     };
 
     const updateProgressBar = () => {
@@ -445,6 +435,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const displayResults = () => {
         questionElement.textContent = `You scored ${userScore} out of ${spaceFacts.length}`;
         answersElement.innerHTML = '';
+
+        spaceFacts.forEach((question, index) => {
+            const resultP = document.createElement('p');
+            resultP.textContent = question.question;
+
+            const answerSpan = document.createElement('span');
+            answerSpan.textContent = ` You answered: ${userAnswers[index]} - `;
+            if (userAnswers[index] === question.correctAnswer) {
+                answerSpan.classList.add('correct');
+            } else {
+                answerSpan.classList.add('incorrect');
+            }
+            resultP.appendChild(answerSpan);
+
+            const correctAnswerSpan = document.createElement('span');
+            correctAnswerSpan.textContent = `The correct answer is: ${question.correctAnswer}`;
+            resultP.appendChild(correctAnswerSpan);
+
+            answersElement.appendChild(resultP);
+        });
+
+        const helpMessage = document.createElement('h4');
+        helpMessage.textContent = 'Check out the space facts if you are struggling!';
+        answersElement.appendChild(helpMessage);
+
         nextButton.style.display = 'none';
         tryAgainButton.style.display = 'block';
     };
@@ -452,19 +467,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const resetQuiz = () => {
         currentQuestionIndex = 0;
         userScore = 0;
+        userAnswers = [];
         updateProgressBar();
         displayQuestion(currentQuestionIndex);
         tryAgainButton.style.display = 'none';
     };
 
-    // Initial question display
     displayQuestion(currentQuestionIndex);
 
-    // Event listener for the next button
     nextButton.addEventListener('click', () => {
-        displayQuestion(currentQuestionIndex);
+        const currentQuestion = spaceFacts[currentQuestionIndex];
+        if (userAnswers[currentQuestionIndex] === currentQuestion.correctAnswer) {
+            userScore++;
+        }
+        currentQuestionIndex++;
+        updateProgressBar();
+        if (currentQuestionIndex < spaceFacts.length) {
+            displayQuestion(currentQuestionIndex);
+        } else {
+            displayResults();
+        }
     });
 
-    // Event listener for the try again button
     tryAgainButton.addEventListener('click', resetQuiz);
 });
