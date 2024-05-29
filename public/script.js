@@ -161,7 +161,7 @@ getSpaceNewsBtn.addEventListener('click', async () => {
     const closeButton = document.createElement('button');
     closeButton.textContent = 'Close News';
     closeButton.id = 'closeNewsBtn';
-    closeButton.classList.add('btn', 'btn-primary', 'mt-3');
+    closeButton.classList.add('btn', 'btn-secondary', 'mt-2');
     // Insert the Close News button after the news articles
     newsCard.insertAdjacentElement('afterend', closeButton);
 });
