@@ -350,3 +350,121 @@ const createPagination = () => {
 // Call createPagination to initialize pagination radio buttons
 createPagination();
 highlightPaginationButton(currentFactIndex);
+
+
+//Quiz
+document.addEventListener('DOMContentLoaded', (event) => {
+    const quizContainer = document.getElementById('quiz-container');
+    const questionElement = document.getElementById('question');
+    const answersElement = document.getElementById('answers');
+    const nextButton = document.getElementById('next-question');
+    const tryAgainButton = document.getElementById('try-again');
+    const progressBar = document.getElementById('progress-bar');
+
+    // Sample space facts for the quiz
+    const spaceFacts = [
+        {
+            question: 'Is Venus hotter than Mercury?',
+            correctAnswer: 'Yes',
+        },
+        {
+            question: 'Does Mars have liquid water on its surface?',
+            correctAnswer: 'No',
+        },
+        {
+            question: 'How long does it take for the Sun to orbit the center of the Milky Way?',
+            correctAnswer: '100 million years',
+        },
+        {
+            question: 'How many stars are in the Milky Way galaxy?',
+            correctAnswer: 'One million',
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let userScore = 0;
+
+    const displayQuestion = (index) => {
+        const currentQuestion = spaceFacts[index];
+        questionElement.textContent = currentQuestion.question;
+        answersElement.innerHTML = '';
+
+        // Options based on the current question
+        let options;
+        switch (currentQuestion.correctAnswer) {
+            case 'Yes':
+            case 'No':
+                options = ['Yes', 'No'];
+                break;
+            case 'Venus':
+                options = ['Venus', 'Mars', 'Earth'];
+                break;
+            case '100 million years':
+                options = ['100 million years', '10 years', '1 million years'];
+                break;
+            case 'One million':
+                options = ['One million', '100 thousand', '1 billion'];
+                break;
+            default:
+                options = ['Yes', 'No']; // Default options
+        }
+
+        options.forEach(option => {
+            const button = document.createElement('button');
+            button.classList.add('btn', 'btn-secondary', 'm-2');
+            button.textContent = option;
+            button.addEventListener('click', () => handleAnswer(option));
+            answersElement.appendChild(button);
+        });
+
+        nextButton.style.display = 'none';
+    };
+
+    const handleAnswer = (selectedAnswer) => {
+        const currentQuestion = spaceFacts[currentQuestionIndex];
+        if (selectedAnswer === currentQuestion.correctAnswer) {
+            userScore++;
+        }
+
+        currentQuestionIndex++;
+        updateProgressBar();
+
+        if (currentQuestionIndex < spaceFacts.length) {
+            nextButton.style.display = 'block';
+        } else {
+            displayResults();
+        }
+    };
+
+    const updateProgressBar = () => {
+        const progressPercentage = (currentQuestionIndex / spaceFacts.length) * 100;
+        progressBar.style.width = `${progressPercentage}%`;
+        progressBar.setAttribute('aria-valuenow', progressPercentage);
+    };
+
+    const displayResults = () => {
+        questionElement.textContent = `You scored ${userScore} out of ${spaceFacts.length}`;
+        answersElement.innerHTML = '';
+        nextButton.style.display = 'none';
+        tryAgainButton.style.display = 'block';
+    };
+
+    const resetQuiz = () => {
+        currentQuestionIndex = 0;
+        userScore = 0;
+        updateProgressBar();
+        displayQuestion(currentQuestionIndex);
+        tryAgainButton.style.display = 'none';
+    };
+
+    // Initial question display
+    displayQuestion(currentQuestionIndex);
+
+    // Event listener for the next button
+    nextButton.addEventListener('click', () => {
+        displayQuestion(currentQuestionIndex);
+    });
+
+    // Event listener for the try again button
+    tryAgainButton.addEventListener('click', resetQuiz);
+});
