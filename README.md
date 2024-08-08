@@ -1,1 +1,3 @@
-# NASA_API
+SpaceSeeker is a web application designed to provide users with real-time data and information about space-related phenomena, including asteroids near Earth, space news articles, space facts, and a quiz to test their space knowledge. The application leverages APIs provided by NASA's Near Earth Object Web Service (NeoWs) and the Spaceflight News API to fetch up-to-date data about asteroids and space news articles, respectively. It also includes a curated list of fun space facts to engage users and a quiz section to challenge their knowledge about space-related topics.
+
+Technology Used: HTML5 · CSS3 · JavaScript · Express.js · Node.js · API Integration · RESTful API Development · Node-fetch · Environment Variables · Error Handling · JSON · Static File Serving
